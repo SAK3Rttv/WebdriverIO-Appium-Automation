@@ -26,7 +26,8 @@ export const config: WebdriverIO.Config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.spec.ts'
+        // './test/specs/**/*.spec.ts'
+        './test/specs/android-native*.ts',
         // ToDo: define location for spec files here
     ],
     // Patterns to exclude.
@@ -55,23 +56,22 @@ export const config: WebdriverIO.Config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local Appium web tests on an Android Emulator
-        platformName: 'Android',
-        // browserName: 'Chrome',
-        'appium:avd': 'Medium_Phone',
-        'appium:avdLaunchTimeout': 180000,
-        'appium:avdReadyTimeout': 180000,
-        'appium:deviceName': 'Android GoogleAPI Emulator',
-        'appium:platformVersion': '12.0',
-        'appium:automationName': 'UiAutomator2',
-        'appium:uiautomator2ServerLaunchTimeout': 120000,
-        'appium:adbExecTimeout': 120000,
-        'appium:enableMultiWindows': true,
-        'appium:enableTopmostWindowFromActivePackage': true,
-        'appium:app': path.join(process.cwd(), './app/android/ApiDemos-debug.apk') // resolve from this config file, not terminal cwd
-    } as any
-],
+    capabilities: [
+        {
+            // capabilities for local Appium web tests on an Android Emulator
+            platformName: 'Android',
+            // browserName: 'Chrome',
+            'appium:avd': 'Medium_Phone',
+            'appium:avdLaunchTimeout': 180000,
+            'appium:avdReadyTimeout': 180000,
+            'appium:deviceName': 'Android GoogleAPI Emulator',
+            'appium:platformVersion': '12.0',
+            'appium:automationName': 'UiAutomator2',
+            'appium:uiautomator2ServerLaunchTimeout': 120000,
+            'appium:adbExecTimeout': 120000,
+            'appium:app': path.join(process.cwd(), './app/android/ApiDemos-debug.apk') // resolve from this config file, not terminal cwd
+        } as any
+    ],
 
     //
     // ===================
