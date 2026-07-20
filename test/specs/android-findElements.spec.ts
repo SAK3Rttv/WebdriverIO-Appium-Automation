@@ -1,4 +1,5 @@
 describe('Android Elements Tests', () => {
+
     it('Find element by accessibility id', async () => {
         // find element by accessibility id
         const appOption = await $('~App');
@@ -37,11 +38,18 @@ describe('Android Elements Tests', () => {
     });
 
     it('Find elements by UIAutomator', async () => {
-	    // find by text contains
-		await $('android=new UiSelector().textContains("Alert")').click();
+        // find by text contains
+        await $('android=new UiSelector().textContains("Alert")').click();
     })
 
     it('Find multiple elements', async () => {
+
+        await driver.startActivity(
+            "io.appium.android.apis",
+            "io.appium.android.apis.ApiDemos");
+
+        await $("~App").waitForExist({ timeout: 3000 });
+
         const expectedList = [
             "API Demos", "Access'ibility",
             "Accessibility", "Animation",
@@ -65,18 +73,26 @@ describe('Android Elements Tests', () => {
         await expect(actualList).toEqual(expectedList);
     })
 
-	it.only('Execrices input field', async () => {
-        // access the auto complete screen
-	    await $("~Views").click();
-		await $("~Auto Complete").click();
-		await $("~1. Screen Top").click();
+    it('Execrices input field', async () => {
 
-        // enter the country name in the input field
+        // 1. update the session to support multi-window (popup window)
+        await driver.updateSettings({
+            enableMultiWindows: true,
+            enableTopmostWindowFromActivePackage: true
+        });
+
+
+        // 2. access the auto complete screen
+        await $("~Views").click();
+        await $("~Auto Complete").click();
+        await $("~1. Screen Top").click();
+
+        // 3. enter the country name in the input field
         const inputField = await $("id=io.appium.android.apis:id/edit");
         await inputField.click();
         await inputField.setValue("can");
 
-        // Select autocomplete option
+        // 4. Select autocomplete option
         // add these two options into config
         // to allow select from popup windows using xpath
         // appium:enableMultiWindows, appium:enableTopmostWindowFromActivePackage
@@ -87,7 +103,13 @@ describe('Android Elements Tests', () => {
 
 
 
-        // Verift the country name
-        await expect(inputField).toHaveText("Canada", {ignoreCase: true});
+        // 5. Verify the country name
+        await expect(inputField).toHaveText("Canada", { ignoreCase: true });
+
+        // 6. Revert back to the normal settings for the rest of the tests
+        await driver.updateSettings({
+            enableMultiWindows: false,
+            enableTopmostWindowFromActivePackage: false
+        });
     })
 })
