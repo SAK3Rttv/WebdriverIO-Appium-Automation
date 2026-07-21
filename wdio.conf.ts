@@ -27,7 +27,7 @@ export const config: WebdriverIO.Config = {
     //
     specs: [
         // './test/specs/**/*.spec.ts'
-        './test/specs/android-native*.ts',
+        './test/specs/android/*.ts',
         // ToDo: define location for spec files here
     ],
     // Patterns to exclude.
@@ -69,7 +69,9 @@ export const config: WebdriverIO.Config = {
             'appium:automationName': 'UiAutomator2',
             'appium:uiautomator2ServerLaunchTimeout': 120000,
             'appium:adbExecTimeout': 120000,
-            'appium:app': path.join(process.cwd(), './app/android/ApiDemos-debug.apk') // resolve from this config file, not terminal cwd
+            'appium:app': path.join(process.cwd(), './app/android/ColorNote Notepad.apk'),
+            'appium:autoGrantPermissions': true,
+            'appium:autoAcceptAlerts': true,
         } as any
     ],
 
