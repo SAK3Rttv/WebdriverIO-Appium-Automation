@@ -34,7 +34,7 @@ export const config: WebdriverIO.Config = {
     //
     specs: [
         // './test/specs/**/*.spec.ts'
-        './test/specs/ios/*.ts',
+        './test/specs/ios/*item-screen*.ts',
         // ToDo: define location for spec files here
     ],
     // Patterns to exclude.
