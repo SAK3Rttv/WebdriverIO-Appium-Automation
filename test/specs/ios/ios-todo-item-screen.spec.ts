@@ -18,26 +18,7 @@ describe('Todo Items', () => {
         // Open existing todo list
         await ItemScreen.getByAccessibilityId(todoListName).click();
 
-        // Create a new todo item
-        await ItemScreen.createItemBtn.click();
-
-        // Add title for todo item
-        await ItemScreen.itemTitleInput.addValue(todoItemName);
-
-        // Add date for todo item
-        await ItemScreen.itemDueInput.click();
-
-        // Open the Date Picker (Tap 85% to the right side of the container)
-        await ItemScreen.openDatePicker();
-
-        // Select tomorrow's date
-        await ItemScreen.selectNextDate();
-
-        // Confirm the date selection by focus on other window
-        await ItemScreen.confirmDatePicker();
-
-        // Create todo item
-        await ItemScreen.createBtn.click();
+        await ItemScreen.createItemDuoToTomorrow(todoItemName);
 
         // assertion
         await expect(await ItemScreen.getByAccessibilityId(todoItemName)).toBeExisting();

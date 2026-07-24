@@ -41,12 +41,25 @@ class ItemScreen {
     }
 
     async createItemDuoToTomorrow(title: string) {
+        // Create a new todo item
         await this.createItemBtn.click();
+
+        // Add title for todo item
         await this.itemTitleInput.addValue(title);
+
+        // Add date for todo item
         await this.itemDueInput.click();
+
+        // Open the Date Picker (Tap 85% to the right side of the container)
         await this.openDatePicker();
+
+        // Select tomorrow's date
         await this.selectNextDate();
+
+        // Confirm the date selection by focus on other window
         await this.confirmDatePicker();
+
+        // Create todo item
         await this.createBtn.click();
     }
 }
