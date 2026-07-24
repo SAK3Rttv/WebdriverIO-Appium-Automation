@@ -1,5 +1,5 @@
-const path = require('path');
 require('dotenv').config();
+
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -34,7 +34,7 @@ export const config: WebdriverIO.Config = {
     //
     specs: [
         // './test/specs/**/*.spec.ts'
-        './test/specs/**/ios*.ts',
+        './test/specs/ios/*.ts',
         // ToDo: define location for spec files here
     ],
     // Patterns to exclude.
@@ -97,8 +97,25 @@ export const config: WebdriverIO.Config = {
             sessionName: 'BStack iOS'
         }
     } as any
-    ],
+// {
+//         platformName: 'iOS',
+//         'appium:automationName': 'XCUITest',
+//         'appium:deviceName': 'iPhone 12',
+//         'appium:platformVersion': '14',
+//         'appium:app': process.env.BROWSERSTACK_APP_ID,
+//         'bstack:options': {
+//             projectName: 'BrowserStack Samples',
+//             buildName: 'browserstack build',
+//             sessionName: 'BStack iOS'
+//         }
+//     } as any
 
+
+
+    ],
+// deviceName: 'iPhone 12',
+//       platformVersion: '14',
+//       platformName: 'ios',
     //
     // ===================
     // Test Configurations
