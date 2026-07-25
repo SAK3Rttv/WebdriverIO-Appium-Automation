@@ -5,19 +5,21 @@ describe('Todo Items', () => {
     const todoListName = "Things to do today";
     const todoItemName = "Buy milk";
 
-
-    it('Create to do list', async () => {
+    before(async () => {
+        // Create a new todo list
         await ListScreen.createListBtn.click();
         await ListScreen.listNameInput.addValue(todoListName);
         await ListScreen.createBtn.click();
 
+        // assertion
         await expect(await ListScreen.listNameField(todoListName)).toBeExisting();
-    });
+
+        // Open the newly created todo list
+        await ItemScreen.getByAccessibilityId(todoListName).click();
+    })
 
     it('Create a Todo Item', async () => {
-        // Open existing todo list
-        await ItemScreen.getByAccessibilityId(todoListName).click();
-
+        // Create a new todo item with a due date of tomorrow
         await ItemScreen.createItemDuoToTomorrow(todoItemName);
 
         // assertion
@@ -27,4 +29,4 @@ describe('Todo Items', () => {
         const isRelativeExisting = await ItemScreen.getByAccessibilityId('Due Tomorrow').isExisting();
         await expect(isAbsoluteExisting || isRelativeExisting).toBe(true);
     });
-})
+});

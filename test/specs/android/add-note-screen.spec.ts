@@ -5,7 +5,7 @@ describe('Add Notes', async () => {
     const noteTitle = 'Fav Anime List';
     const noteBody = '1. Naruto\n2. One Piece\n3. Bleach';
 
-    it('Skip tutorial', async () => {
+    before(async () => {
         await AddNoteScreen.skipTutorial();
     });
 
