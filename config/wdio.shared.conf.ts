@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -8,14 +6,6 @@ export const config: WebdriverIO.Config = {
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
     tsConfigPath: './tsconfig.json',
-
-
-    protocol: 'https',
-    hostname: 'hub.browserstack.com',
-    path: '/wd/hub',
-    port: 443,
-    // port: 4723,
-
 
     //
     // ==================
@@ -32,11 +22,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: [
-        // './test/specs/**/*.spec.ts'
-        './test/specs/ios/*item-screen*.ts',
-        // ToDo: define location for spec files here
-    ],
+
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -63,59 +49,10 @@ export const config: WebdriverIO.Config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    // BrowserStack auth
-    user: process.env.BROWSERSTACK_USERNAME,
-    key: process.env.BROWSERSTACK_ACCESS_KEY,
+
+    capabilities: [],
 
 
-
-    capabilities: [
-        /*{
-            // capabilities for local Appium web tests on an Android Emulator
-            platformName: 'Android',
-            'appium:avd': 'Medium_Phone',
-            'appium:avdLaunchTimeout': 180000,
-            'appium:avdReadyTimeout': 180000,
-            'appium:deviceName': 'Android GoogleAPI Emulator',
-            'appium:platformVersion': '12.0',
-            'appium:automationName': 'UiAutomator2',
-            'appium:uiautomator2ServerLaunchTimeout': 120000,
-            'appium:adbExecTimeout': 120000,
-            'appium:app': path.join(process.cwd(), './app/android/ColorNote Notepad.apk'),
-            'appium:autoGrantPermissions': true,
-            'appium:autoAcceptAlerts': true,
-        } as any*/
-        {
-        platformName: 'iOS',
-        'appium:automationName': 'XCUITest',
-        'appium:deviceName': 'iPhone 14 Pro Max',
-        'appium:platformVersion': '16',
-        'appium:app': process.env.BROWSERSTACK_APP_ID,
-        'bstack:options': {
-            projectName: 'BrowserStack Samples',
-            buildName: 'browserstack build',
-            sessionName: 'BStack iOS'
-        }
-    } as any
-// {
-//         platformName: 'iOS',
-//         'appium:automationName': 'XCUITest',
-//         'appium:deviceName': 'iPhone 12',
-//         'appium:platformVersion': '14',
-//         'appium:app': process.env.BROWSERSTACK_APP_ID,
-//         'bstack:options': {
-//             projectName: 'BrowserStack Samples',
-//             buildName: 'browserstack build',
-//             sessionName: 'BStack iOS'
-//         }
-//     } as any
-
-
-
-    ],
-// deviceName: 'iPhone 12',
-//       platformVersion: '14',
-//       platformName: 'ios',
     //
     // ===================
     // Test Configurations
@@ -159,12 +96,7 @@ export const config: WebdriverIO.Config = {
     // Default request retries count
     connectionRetryCount: 3,
     //
-    // Test runner services
-    // Services take over a specific job you don't want to take care of. They enhance
-    // your test setup with almost no effort. Unlike plugins, they don't add new
-    // commands. Instead, they hook themselves up into the test process.
-    // services: ['appium', 'visual'],
-    services: ['browserstack'],
+
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
