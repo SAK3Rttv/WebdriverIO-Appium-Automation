@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path');
 import {config} from './wdio.shared.conf';
 
 //
@@ -6,6 +6,9 @@ import {config} from './wdio.shared.conf';
 // Runner Configuration
 // ====================
 // WebdriverIO supports running e2e tests as well as unit and component tests.
+// config.protocol = 'http';
+// config.hostname = '127.0.0.1';
+// config.path = '/';
 config.port = 4723;
 
 // Test runner services
@@ -41,6 +44,7 @@ config.capabilities = [
         'appium:app': path.join(process.cwd(), './app/android/ColorNote Notepad.apk'),
         'appium:autoGrantPermissions': true,
         'appium:autoAcceptAlerts': true,
+        'appium:clearDeviceLogsOnStart': true
     } as any
 ]
 

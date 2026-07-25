@@ -1,5 +1,4 @@
 import {config} from './wdio.shared.conf';
-require('dotenv').config();
 
 //
 // ====================

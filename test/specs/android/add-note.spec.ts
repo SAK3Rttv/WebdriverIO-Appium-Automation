@@ -25,7 +25,7 @@ describe('Add Notes', async () => {
 
         // save note
         await driver.back();
-        // await driver.back();
+        await driver.back();
 
         // assertion
         await expect($('id=edit_btn')).toBeDisplayed();
