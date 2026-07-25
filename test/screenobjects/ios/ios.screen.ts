@@ -17,12 +17,12 @@ class ItemScreen {
         return $('~Date Picker');
     }
 
-    async openDatePicker() {
-        await dynamicTap(await this.datePicker, 0.85);
-    }
-
     get createBtn() {
         return $('~Create');
+    }
+
+    get nextMonthBtn() {
+        return $('~Next month');
     }
 
     getByAccessibilityId(accessibilityId: string) {
@@ -31,9 +31,22 @@ class ItemScreen {
 
     async selectNextDate() {
         const tomorrowDay = new Date().getDate() + 1;
-        const dateElement = '**/XCUIElementTypeStaticText[`label CONTAINS "' + tomorrowDay + '"`]';
-        const dayCell = await $(`-ios class chain:${dateElement}`);
+        const dayCell = await this.getByAccessibilityId(tomorrowDay.toString());
+        if (!(await dayCell.isExisting())) {
+            await this.selectFirstDateOfNextMonth();
+            return;
+        }
         await dynamicTap(dayCell, 0.4);
+    }
+
+    async selectFirstDateOfNextMonth() {
+        await dynamicTap(await this.nextMonthBtn, 0.4);
+        const firstDayCell = await this.getByAccessibilityId('1');
+        await dynamicTap(firstDayCell, 0.4);
+    }
+
+    async openDatePicker() {
+        await dynamicTap(await this.datePicker, 0.85);
     }
 
     async confirmDatePicker() {
