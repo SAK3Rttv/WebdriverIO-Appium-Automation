@@ -20,6 +20,7 @@ jobs:
           env:
             BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
             BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+            BROWSERSTACK_APP_ID: ${{ secrets.BROWSERSTACK_APP_ID }}
           run: npx wdio config/wdio.ios.conf.ts --spec test/specs/ios/ios-todo-item-screen.spec.ts
 
         - name: 📦 Upload Logs
